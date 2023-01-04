@@ -2,9 +2,9 @@ let state = 0;
 let number = 0;
 let firstDirections = ["go left", "go right"];
 let directions = ["take the next right", "take the next left", "keep straight"];
-let textHeight = 100;
-let textHeightc2 = 100;
-let textHeightc3 = 100;
+let textHeight = 125;
+let textHeightc2 = 125;
+let textHeightc3 = 125;
 let dirNumber = 0;
 let buttonGen, buttonRand, inputDir, buttonRestart, randomGen, randomList1;
 let randomList = [];
@@ -28,9 +28,9 @@ function restartSketch() {
   number = 0;
   //firstDirections = ['go left', 'go right'];
   //directions = ['take the next right', 'take the next left', 'keep straight'];
-  textHeight = 100;
-  textHeightc2 = 100;
-  textHeightc3 = 100;
+  textHeight = 125;
+  textHeightc2 = 125;
+  textHeightc3 = 125;
   dirNumber = 0;
   buttonRestart.hide();
   randomGen.hide();
@@ -54,13 +54,17 @@ function userInput() {
     inputDir.style("border-color: black");
     inputDir.position(50, 100);
     inputDir.size(300, 25);
+    inputDir.input(isNumber)
+ 
+    
+
     // inputDir.focus('outline:none')
 
     buttonGen = createButton("generate");
     buttonGen.style("background-color", col);
     buttonGen.style("border-width:2px");
     buttonGen.style("border-color: black");
-    buttonGen.style("font-family", "avenir");
+    buttonGen.style("font-family", "proxima-nova");
     buttonGen.style("font-weight", "bold");
     buttonGen.size(100, inputDir.height);
     buttonGen.position(
@@ -71,7 +75,7 @@ function userInput() {
     buttonRand = createButton("random");
     buttonRand.style("background-color", col);
     buttonRand.style("border-width:2px");
-    buttonRand.style("font-family", "avenir");
+    buttonRand.style("font-family", "proxima-nova");
     buttonRand.style("font-weight", "bold");
     buttonRand.style("border-color: black");
     buttonRand.size(100, inputDir.height);
@@ -83,10 +87,23 @@ function userInput() {
     greeting = createElement("h1", "how many directions?");
     greeting.position(inputDir.x, inputDir.y - 60);
 
-    buttonGen.mousePressed(inputVal);
+
+          buttonGen.mousePressed(inputVal);
+ 
+
     buttonRand.mousePressed(randomInput);
     state = 1;
   }
+}
+
+function isNumber() {
+  let s = this.value();
+  let c = s.charCodeAt(s.length - 1);
+
+  if (!(c > 47 && c < 58)) {
+    this.value(s.substring(0,s.length-1));
+    textFont("Proxima Nova");
+  } 
 }
 
 function inputVal() {
@@ -135,7 +152,7 @@ function generate() {
   }
 
   // if (number <=dirNumber){
-  for (let i = 0; i <= dirNumber; i++) {
+  for (let i = 0; i < dirNumber-1; i++) {
     let direction = random(directions);
     //randomList = createElement("p", direction);
     //background(255);
@@ -163,11 +180,11 @@ function generate() {
   buttonRestart = createButton("restart");
   buttonRestart.style("background-color", col);
   buttonRestart.style("border-width:2px");
-  buttonRestart.style("font-family", "avenir");
+  buttonRestart.style("font-family", "proxima-nova");
   buttonRestart.style("font-weight", "bold");
   buttonRestart.style("border-color: black");
   buttonRestart.size(100, inputDir.height);
-  buttonRestart.position(inputDir.x, textHeight + 50);
+  buttonRestart.position(inputDir.x, textHeight + 20);
   buttonRestart.mousePressed(restartSketch);
 }
 
